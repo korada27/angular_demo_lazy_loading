@@ -1,0 +1,54 @@
+<div style="height: 100%;overflow:hidden">
+    <mat-toolbar class="mat-header" fxLayout="row" fxLayoutAlign="space-between center"
+        style="background: black;color: #fff;">
+        <div fxLayoutAlign="end" fxShow="true" fxHide.gt-sm="true">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <a mat-button class="companyName" routerLink="/lab/home">
+            <div fxLayoutAlign="row wrap">
+                <mat-icon style="font-size: 40px">public</mat-icon>
+                &nbsp;&nbsp;&nbsp; DEMO APP
+            </div>
+        </a>
+        <div fxShow="true" fxHide.lt-md="true">
+            <a mat-button routerLink="/lab/home/about">About</a>
+            <a mat-button routerLink="/lab/home/contact">Contact Us</a>
+            <button mat-button [matMenuTriggerFor]="menu">Profile</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>settings</mat-icon>
+                    Settings
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>cancel</mat-icon>
+                    Logout
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="black" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+            <div fxLayout="column">
+                <a mat-button routerLink="/lab/home/about" (click)="sidenav.toggle()">About</a>
+                <a mat-button routerLink = "/lab/home/contact" (click)="sidenav.toggle()">Contact Us</a>
+                <a mat-button (click)="sidenav.toggle()">Chat/Helpline</a>
+                <button mat-button [matMenuTriggerFor]="menu">Profile</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="sidenav.toggle()">
+                        <mat-icon>settings</mat-icon>
+                        Settings
+                    </button>
+                    <button mat-menu-item (click)="onLogoutClick();sidenav.toggle()">
+                        <mat-icon>cancel</mat-icon>
+                        Logout
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-sidenav>
+        <div class="homeresponsiveness" style="overflow-y:auto;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+</div>
